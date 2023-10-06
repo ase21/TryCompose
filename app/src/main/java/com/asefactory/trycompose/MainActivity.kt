@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -50,30 +51,60 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+@Preview
 @Composable
-fun Conversation(messages: List<Message>) {
-    LazyColumn {
-        items(messages) {
-            MessageCard(message = it)
+fun GreetingsList(
+    modifier: Modifier = Modifier,
+    names: List<String> = listOf("World", "Compose")
+){
+    Column(modifier = modifier.padding(4.dp)) {
+        for (name in names){
+            Greetings(name = name)
+        }
+    }
+}
+@Composable
+fun Greetings(name: String) {
+    Surface(color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
+        Row(modifier = Modifier.padding(24.dp)) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = "Hello,")
+                Text(text = name)
+            }
+            ElevatedButton(onClick = {
+
+            }) {
+                Text(text = "Some text")
+            }
         }
     }
 }
 
 @Composable
-fun MessageCard(message: Message) {
+fun Conversation(messages: List<Message>) {
+    LazyColumn {
+        items(messages) {
+            MessageCard(
+                message = it, Modifier
+                    .size(40.dp)
+                    .clip(shape = CircleShape)
+                    .border(
+                        width = 1.5.dp,
+                        color = MaterialTheme.colorScheme.primary,
+                        shape = CircleShape
+                    )
+            )
+        }
+    }
+}
+
+@Composable
+fun MessageCard(message: Message, modifier: Modifier = Modifier) {
     Row {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "picture",
-            modifier = Modifier
-                .size(40.dp)
-                .clip(shape = CircleShape)
-                .border(
-                    width = 1.5.dp,
-                    color = MaterialTheme.colorScheme.primary,
-                    shape = CircleShape
-                )
+            modifier = modifier
         )
         Spacer(modifier = Modifier.width(8.dp))
 
