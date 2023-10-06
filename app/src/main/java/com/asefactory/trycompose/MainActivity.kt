@@ -36,6 +36,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.asefactory.trycompose.ui.Message
 import com.asefactory.trycompose.ui.SampleData
+import com.asefactory.trycompose.ui.composables.Greetings
+import com.asefactory.trycompose.ui.composables.OnboardingScreen
 import com.asefactory.trycompose.ui.theme.TryComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +47,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             TryComposeTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    Conversation(SampleData.conversationSample)
+                    //Conversation(SampleData.conversationSample)
+//                    GreetingsList()
+                    OnboardingScreen()
                 }
             }
         }
@@ -60,22 +64,6 @@ fun GreetingsList(
     Column(modifier = modifier.padding(4.dp)) {
         for (name in names){
             Greetings(name = name)
-        }
-    }
-}
-@Composable
-fun Greetings(name: String) {
-    Surface(color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
-        Row(modifier = Modifier.padding(24.dp)) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(text = "Hello,")
-                Text(text = name)
-            }
-            ElevatedButton(onClick = {
-
-            }) {
-                Text(text = "Some text")
-            }
         }
     }
 }
