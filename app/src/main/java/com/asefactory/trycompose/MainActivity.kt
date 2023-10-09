@@ -66,11 +66,11 @@ fun MyApp(){
 @Composable
 fun GreetingsList(
     modifier: Modifier = Modifier,
-    names: List<String> = listOf("World", "Compose")
+    names: List<String> = List(1000) { "$it" }
 ){
-    Column(modifier = modifier.padding(4.dp)) {
-        for (name in names){
-            Greetings(name = name)
+    LazyColumn(modifier = modifier.padding(4.dp)) {
+        items(names){
+            Greetings(name = it)
         }
     }
 }
