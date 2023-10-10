@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,7 +53,7 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun MyApp(){
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
+    var shouldShowOnboarding by rememberSaveable { mutableStateOf(true) }
     Surface(modifier = Modifier.fillMaxSize()) {
         if (shouldShowOnboarding){
             OnboardingScreen { shouldShowOnboarding = false }
@@ -107,8 +108,6 @@ fun MessageCard(message: Message, modifier: Modifier = Modifier) {
         val surfaceColor by animateColorAsState(
             if (isExpanded) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
         )
-
-
 
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
             Text(
