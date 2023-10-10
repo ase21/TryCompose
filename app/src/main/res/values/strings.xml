@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TryCompose</string>
+    <string name="some_less">Some less</string>
+    <string name="some_more">Some more</string>
 </resources>
